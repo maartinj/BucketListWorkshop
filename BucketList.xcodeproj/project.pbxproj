@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E447A27D29B173F200D44987 /* BucketItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E447A27C29B173F200D44987 /* BucketItem.swift */; };
+		E447A27F29B1E46900D44987 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E447A27E29B1E46900D44987 /* DetailView.swift */; };
 		E463E60429AC953B003F30C8 /* BucketListApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E463E60329AC953B003F30C8 /* BucketListApp.swift */; };
 		E463E60629AC953B003F30C8 /* BucketListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E463E60529AC953B003F30C8 /* BucketListView.swift */; };
 		E463E60829AC953C003F30C8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E463E60729AC953C003F30C8 /* Assets.xcassets */; };
@@ -14,6 +16,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E447A27C29B173F200D44987 /* BucketItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketItem.swift; sourceTree = "<group>"; };
+		E447A27E29B1E46900D44987 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		E463E60029AC953B003F30C8 /* BucketList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BucketList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E463E60329AC953B003F30C8 /* BucketListApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketListApp.swift; sourceTree = "<group>"; };
 		E463E60529AC953B003F30C8 /* BucketListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketListView.swift; sourceTree = "<group>"; };
@@ -53,6 +57,8 @@
 			children = (
 				E463E60329AC953B003F30C8 /* BucketListApp.swift */,
 				E463E60529AC953B003F30C8 /* BucketListView.swift */,
+				E447A27C29B173F200D44987 /* BucketItem.swift */,
+				E447A27E29B1E46900D44987 /* DetailView.swift */,
 				E463E60729AC953C003F30C8 /* Assets.xcassets */,
 				E463E60929AC953C003F30C8 /* Preview Content */,
 			);
@@ -137,6 +143,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E447A27D29B173F200D44987 /* BucketItem.swift in Sources */,
+				E447A27F29B1E46900D44987 /* DetailView.swift in Sources */,
 				E463E60629AC953B003F30C8 /* BucketListView.swift in Sources */,
 				E463E60429AC953B003F30C8 /* BucketListApp.swift in Sources */,
 			);
