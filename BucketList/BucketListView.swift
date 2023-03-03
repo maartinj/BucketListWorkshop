@@ -10,7 +10,7 @@ import SwiftUI
 // Playlista: https://www.youtube.com/watch?v=C8FWpccVYro&list=PLBn01m5Vbs4CTP6FpTWG0ZPDTyj4Fpt-3&ab_channel=StewartLynch
 
 struct BucketListView: View {
-    @State private var bucketList = BucketItem.samples
+    @EnvironmentObject var dataStore: DataStore
     @State private var newItem = ""
     var body: some View {
         NavigationStack {
@@ -19,8 +19,7 @@ struct BucketListView: View {
                     TextField("New Bucket Item", text: $newItem)
                         .textFieldStyle(.roundedBorder)
                     Button {
-                        let newBucketItem = BucketItem(name: newItem)
-                        bucketList.append(newBucketItem)
+                        dataStore.create(newItem)
                         newItem = ""
                     } label: {
                         Image(systemName: "plus.circle.fill")
@@ -28,25 +27,34 @@ struct BucketListView: View {
                     .disabled(newItem.isEmpty)
                 }
                 .padding()
-                List {
-                    ForEach($bucketList) { $item in
-                        NavigationLink(value: item) {
-                            TextField(item.name, text: $item.name, axis: .vertical)
-                                .textFieldStyle(.roundedBorder)
-                                .font(.title3)
-                                .foregroundColor(item.completedDate == .distantPast ? .primary : .red)
+                if !dataStore.bucketList.isEmpty {
+                    List {
+                        ForEach($dataStore.bucketList) { $item in
+                            NavigationLink(value: item) {
+                                TextField(item.name, text: $item.name, axis: .vertical)
+                                    .textFieldStyle(.roundedBorder)
+                                    .font(.title3)
+                                    .foregroundColor(item.completedDate == .distantPast ? .primary : .red)
+                            }
+                            .onChange(of: item, perform: { _ in
+                                dataStore.saveList()
+                            })
+                            .listRowSeparator(.hidden)
                         }
-                        .listRowSeparator(.hidden)
+                        .onDelete { indexSet in
+                            dataStore.delete(indexSet: indexSet)
+                        }
                     }
-                    .onDelete { indexSet in
-                        bucketList.remove(atOffsets: indexSet)
-                    }
+                    .listStyle(.plain)
+                } else {
+                    Text("Add your first BucketList item.")
+                    Image("bucketList")
+                    Spacer()
                 }
-                .listStyle(.plain)
             }
             .navigationTitle("Bucket List")
             .navigationDestination(for: BucketItem.self) { item in
-                DetailView(bucketItem: item, bucketList: $bucketList)
+                DetailView(bucketItem: item)
             }
         }
     }
@@ -55,5 +63,6 @@ struct BucketListView: View {
 struct BucketListView_Previews: PreviewProvider {
     static var previews: some View {
         BucketListView()
+            .environmentObject(DataStore())
     }
 }
